@@ -18,6 +18,12 @@ app.conf = conf_parsed
 // bolt on the loader
 require('./lib/utils')(app)
 
+app.on('error', function (err, label) {
+  console.error(label, 'error!!!');
+  console.error(JSON.stringify(err, null, 2))
+  throw new Error(label + ' fatal')
+})
+
 // load modules specified in conf
 Object.keys(app.conf.modules).forEach(function (m) {
   if (app.conf.modules[m]) {

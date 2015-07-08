@@ -5,10 +5,6 @@ sex: male
 ## what modules we want active.
 modules:
   twitter: true
-  markov: true
-  print_tweet: true
-  mail_lists: true
-  file_logger: true
 twitter_settings:
   ## for Authenication
   auth:
@@ -17,13 +13,10 @@ twitter_settings:
     access_token_key: 21072064-Cu57RyOLQqcdArJY0idp7UtYwpinDZfQAMxIA6SdE
     access_token_secret: UkDgij3XxpNkhLGwtnqBLZGTWeggQ4lXw2J522B12gNZo
   ## track these keywords on Twitter (should be an array of strings)
-  keywords: null
-  ## how likely it is to follow someone posting about the query.
-  query_follow_rate: 0.2
-  ## how likely we are going to "follow back" people following us.
-  follow_back_rate: 0.8
-  ## reply with markov chain?
-  reply_with_markov: 0.1
-  ## look up these tweets on boot
-  debug_tweets:
-    - '618545351042199552'
+  keywords:
+    - "POTUS"
+  ## optional submodules
+  enable_console: true
+  enable_filter: false
+  enable_mentions: true
+  enable_user: true

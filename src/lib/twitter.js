@@ -1,56 +1,16 @@
+// return a twitter client
+
 var Twitter = require('twitter')
 
 module.exports = function (app) {
   var conf = app.conf.twitter_settings
-  var tw = new Twitter(conf.auth)
 
-  tw.stream('user', {replies: 'all', 'with': 'followings'},  function (stream) {
-    stream.on('data', function (tweet) {
-      app.emit('user tweet', tweet)
-    })
+  // load optional modules
+  if (conf.enable_console) app.load('twitter__console')
+  if (conf.enable_filter) app.load('twitter__filter')
+  if (conf.enable_mentions) app.load('twitter__mentions')
+  if (conf.enable_user) app.load('twitter__user')
 
-    stream.on('error', function (err) {
-      if (err.source && err.source.friends) return;
-      console.error(JSON.stringify(err, null, 2))
-    })
-  })
-
-  if (conf.keywords) {
-    tw.stream('statuses/filter', {
-      track: conf.keywords.join(','),
-      'with': 'followings',
-      replies: 'all'
-    },  function (stream) {
-      stream.on('data', function (tweet) {
-        app.emit('filter tweet', tweet)
-      })
-
-      stream.on('error', function (err) {
-        if (err.source && err.source.friends) return;
-        console.error(JSON.stringify(err, null, 2))
-      })
-    })
-  }
-
-  tw.stream('statuses/mentions_timeline', function (stream) {
-    stream.on('data', function (tweet) {
-      app.emit('mentions tweet', tweet)
-    })
-
-    stream.on('error', function (err) {
-      if (err.source && err.source.friends) return;
-      console.error(JSON.stringify(err, null, 2))
-    })
-  })
-
-  if (conf.debug_tweets) {
-    conf.debug_tweets.forEach(function (tweet_id) {
-      tw.get('statuses/show/' + tweet_id, function (err, tweet) {
-        if (err) return console.error(JSON.stringify(err, null, 2))
-        console.log('tweet', JSON.stringify(tweet, null, 2))
-      })
-    })
-  }
-
-  return tw
+  // return twitter client
+  return new Twitter(conf.auth)
 }

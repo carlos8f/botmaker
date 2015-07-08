@@ -20,3 +20,6 @@ twitter_settings:
   enable_filter: false
   enable_mentions: true
   enable_user: true
+redis:
+  host: localhost
+  port: 6379

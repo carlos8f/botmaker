@@ -21,7 +21,7 @@ require('./lib/utils')(app)
 // load modules specified in conf
 Object.keys(app.conf.modules).forEach(function (m) {
   if (app.conf.modules[m]) {
-    app.load(m, path.resolve(app.root, 'lib', m.replace(/__/g, '/')))
+    app.load(m)
   }
 })
 

@@ -4,7 +4,10 @@ name: Silencio
 sex: male
 ## what modules we want active.
 modules:
-  twitter: true
+  console: true
+  filter: false
+  mentions: true
+  user: true
 twitter_settings:
   ## for Authenication
   auth:

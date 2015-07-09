@@ -12,10 +12,10 @@ modules:
 twitter_settings:
   ## for Authenication
   auth:
-    consumer_key: qCKoiUPFhNPx36hQASjA3kwTS
-    consumer_secret: XAPRxZMlPQ9cRaxa51xVRpfNRT3c5qKd6EimO0dftkrQIaRLtN
-    access_token_key: 21072064-Cu57RyOLQqcdArJY0idp7UtYwpinDZfQAMxIA6SdE
-    access_token_secret: UkDgij3XxpNkhLGwtnqBLZGTWeggQ4lXw2J522B12gNZo
+    consumer_key: la9DX1SNGvlLetofb9KDRYeyM
+    consumer_secret: deNUedt3BSCc9FXonynwvFBcswpoUBJKxhIfK4AOiAWlt6sd73
+    access_token_key: 2815482156-MtnEzIcv73cGZcd6MCPrDwr4fchOyBDOOUWXGa2
+    access_token_secret: EogczYvtY4WnM9bCZIf2L23p8wZquAJkB6drTXcMkfPu4
   ## track these keywords on Twitter (should be an array of strings)
   keywords:
     - "my cat"

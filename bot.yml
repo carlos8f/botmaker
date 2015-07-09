@@ -5,9 +5,9 @@ sex: male
 ## what modules we want active.
 modules:
   console: true
-  filter: false
+  filter: true
   mentions: true
-  user: true
+  user: false
 twitter_settings:
   ## for Authenication
   auth:
@@ -17,7 +17,8 @@ twitter_settings:
     access_token_secret: UkDgij3XxpNkhLGwtnqBLZGTWeggQ4lXw2J522B12gNZo
   ## track these keywords on Twitter (should be an array of strings)
   keywords:
-    - "POTUS"
+    - "node js job"
+    - "hiring node"
   ## optional submodules
   enable_console: true
   enable_filter: false

@@ -10,6 +10,7 @@ modules:
   user: false
   markov_reply: true
 twitter_settings:
+  screen_name: SmallMyth
   ## for Authenication
   auth:
     consumer_key: la9DX1SNGvlLetofb9KDRYeyM

@@ -19,13 +19,11 @@ app.conf = conf_parsed
 require('./lib/utils')(app)
 
 // load modules from conf
-app.on('load', function () {
-  // load modules specified in conf
-  Object.keys(app.conf.modules).forEach(function (m) {
-    if (app.conf.modules[m]) {
-      app.load(m)
-    }
-  })
+// load modules specified in conf
+Object.keys(app.conf.modules).forEach(function (m) {
+  if (app.conf.modules[m]) {
+    app.load(m)
+  }
 })
 
 app.on('error', function (err, label) {

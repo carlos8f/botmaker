@@ -5,9 +5,10 @@ sex: male
 ## what modules we want active.
 modules:
   console: true
-  filter: true
-  mentions: false
+  filter: false
+  mentions: true
   user: false
+  markov_reply: true
 twitter_settings:
   ## for Authenication
   auth:
@@ -19,11 +20,6 @@ twitter_settings:
   keywords:
     - "my cat"
     - "mad max"
-  ## optional submodules
-  enable_console: true
-  enable_filter: false
-  enable_mentions: true
-  enable_user: true
 redis:
   host: localhost
   port: 6379

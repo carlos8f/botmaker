@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
-var app = require('./main');
+require('./dump')
 
 app.emit('load')

@@ -6,7 +6,7 @@ sex: male
 modules:
   console: true
   filter: true
-  mentions: true
+  mentions: false
   user: false
 twitter_settings:
   ## for Authenication
@@ -17,8 +17,8 @@ twitter_settings:
     access_token_secret: UkDgij3XxpNkhLGwtnqBLZGTWeggQ4lXw2J522B12gNZo
   ## track these keywords on Twitter (should be an array of strings)
   keywords:
-    - "node js job"
-    - "hiring node"
+    - "my cat"
+    - "mad max"
   ## optional submodules
   enable_console: true
   enable_filter: false

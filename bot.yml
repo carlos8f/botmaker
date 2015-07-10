@@ -9,6 +9,7 @@ modules:
   mentions: true
   user: false
   markov_reply: true
+  user: true
 twitter_settings:
   screen_name: SmallMyth
   ## for Authenication
@@ -21,6 +22,7 @@ twitter_settings:
   keywords:
     - "my cat"
     - "mad max"
+  user_favorite_rate: 0.1
 redis:
   host: localhost
   port: 6379

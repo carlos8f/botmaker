@@ -7,7 +7,6 @@ modules:
   console: true
   filter: false
   mentions: true
-  user: false
   markov_reply: true
   user: true
 twitter_settings:

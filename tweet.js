@@ -40,21 +40,20 @@ app.on('error', function (err, label) {
 
 app.once('load', function () {
   var data = {tweets: [], users: []}
+  var lastTweet
   app.tweets.list({load: true}, function (err, chunk, getNext) {
     if (err) throw err
-    data.tweets = data.tweets.concat(chunk)
-    if (chunk.length && getNext) getNext()
+    chunk.forEach(function (tweet) {
+      m.seed(tweet.text || '')
+      lastTweet = tweet.text || ''
+    })
+    if (chunk.length) {
+      getNext()
+    }
     else {
-      app.users.list({load: true}, function (err, chunk, getNext) {
-        if (err) throw err
-        data.users = data.users.concat(chunk)
-        if (chunk.length && getNext) getNext()
-        else {
-          fs.writeFileSync('./dump.json', JSON.stringify(data, null, 2))
-          console.log('wrote ./dump.json')
-          process.exit()
-        }
-      })
+      var response = m.respond(lastTweet || 'This is a fake tweet', 140)
+      console.log(response.join(' '))
+      process.exit()
     }
   })
 })

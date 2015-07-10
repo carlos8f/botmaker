@@ -1,8 +1,10 @@
 var fs = require('fs')
-  , m = require('markov')(3)
+  , m = require('markov')(4)
   , path = require('path')
   , yaml = require('js-yaml')
   , EE = require('events').EventEmitter
+
+require('colors')
 
 // read the conf
 var conf_path = path.resolve(__dirname, 'bot.yml')
@@ -40,20 +42,45 @@ app.on('error', function (err, label) {
 
 app.once('load', function () {
   var data = {tweets: [], users: []}
-  var lastTweet
+  var lastTweet, fullText = ''
   app.tweets.list({load: true}, function (err, chunk, getNext) {
     if (err) throw err
     chunk.forEach(function (tweet) {
-      m.seed(tweet.text || '')
+      fullText += (tweet.text || '')
       lastTweet = tweet.text || ''
     })
     if (chunk.length) {
       getNext()
     }
     else {
-      var response = m.respond(lastTweet || 'This is a fake tweet', 140)
-      console.log(response.join(' '))
-      process.exit()
+      m.seed(fullText)
+      var response = m.respond(lastTweet || 'This is a fake tweet', 4)
+      var outputLen = 140, output = ''
+      response.forEach(function (word) {
+        if ((output + ' ' + word).length >= outputLen) return
+        output += ' ' + word
+      })
+      var handles = []
+      output = output.replace(/([a-z0-9A-Z\?\!]+)?@([a-z0-9A-Z]+)/g, function (match, p1, p2, offset, string) {
+        if (handles.indexOf(p2) !== -1) return ''
+        console.log('handle: ', p2)
+        handles.push(p2)
+        if (p1) return p1 + ' @' + p2
+        else return '@' + p2
+      })
+      output = output.replace(/\s+/g, ' ')
+      if (Math.random() > 0.85) punc = '! :D'
+      else punc = '.'
+      output = output.trim() + punc
+      console.log(output)
+      app.load('twitter')
+      app.twitter.post('statuses/update', {status: output}, function (err, tweet) {
+        if (err) {
+          return app.emit('error', err, 'tweet error')
+        }
+        console.log('tweet posted.'.yellow)
+        process.exit()
+      })
     }
   })
 })

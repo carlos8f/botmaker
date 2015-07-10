@@ -46,7 +46,7 @@ app.once('load', function () {
   app.tweets.list({load: true}, function (err, chunk, getNext) {
     if (err) throw err
     chunk.forEach(function (tweet) {
-      fullText += (tweet.text || '')
+      fullText += ' ' + (tweet.text || '')
       lastTweet = tweet.text || ''
     })
     if (chunk.length) {

@@ -28,3 +28,5 @@
       - follow users?
   - wait a while,
       - favorite or retweet popular ones
+- post media or links or poems on a timer,
+  from a list of sources

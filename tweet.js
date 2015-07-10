@@ -67,7 +67,7 @@ app.once('load', function () {
       var handles = []
       output = output.replace(/([a-z0-9A-Z\?\!]+)?@([a-z0-9A-Z]+)/g, function (match, p1, p2, offset, string) {
         if (handles.indexOf(p2) !== -1) return ''
-        if (handle === app.conf.twitter_settings.screen_name) return ''
+        if (p2 === app.conf.twitter_settings.screen_name) return ''
         console.log('handle: ', p2)
         handles.push(p2)
         if (p1) return p1 + ' @' + p2

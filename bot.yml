@@ -9,6 +9,7 @@ modules:
   mentions: true
   markov_reply: true
   user: true
+  followers: true
 twitter_settings:
   screen_name: SmallMyth
   ## for Authenication

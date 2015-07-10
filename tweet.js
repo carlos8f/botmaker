@@ -45,6 +45,10 @@ app.once('load', function () {
   var lastTweet, fullText = ''
   app.tweets.list({load: true}, function (err, chunk, getNext) {
     if (err) throw err
+    chunk.sort(function (a, b) {
+      if (Math.random() >= 0.5) return -1
+      return 1
+    })
     chunk.forEach(function (tweet) {
       fullText += ' ' + (tweet.text || '')
       lastTweet = tweet.text || ''

@@ -22,7 +22,7 @@ twitter_settings:
   keywords:
     - "my cat"
     - "mad max"
-  user_favorite_rate: 0.1
+  user_favorite_rate: 0.035
 redis:
   host: localhost
   port: 6379

@@ -70,10 +70,15 @@ app.once('load', function () {
         if (p2 === app.conf.twitter_settings.screen_name) return ''
         console.log('handle: ', p2)
         handles.push(p2)
-        if (p1) return p1 + ' @' + p2
-        else return '@' + p2
+        if (p1) return p1 + ' ' + p2
+        else return + p2
       })
-      output = output.replace(/\s+/g, ' ')
+      output = output
+        .replace(/\s+/g, ' ')
+        .replace(/&amp;/g, '&')
+        .replace(/&gt;/g, '>')
+        .replace(/&lt;/g , '<')
+        .replace(/&nbsp;/g, ' ')
       if (Math.random() > 0.85) punc = '! :D'
       else punc = '.'
       output = output.trim() + punc
